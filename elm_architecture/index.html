@@ -6,9 +6,6 @@
   <title>Hello World with Elm</title>
   <!-- Inject the compiled js file -->
   <script src="./main.js"></script>
-</head>
-
-<body>
   <style>
     html,
     body {
@@ -542,12 +539,14 @@
       }
     }
   </style>
-  <div id="elm-app"></div>
-</body>
-<script>
-  node = document.getElementById("elm-app")
-  // Embed the application in selected node
-  elmApp = Elm.HelloWorld.embed(node)
-</script>
+</head>
 
+<body>
+  <div id="elm-app"></div>
+  <script>
+    node = document.getElementById("elm-app")
+    // Embed the application in selected node
+    elmApp = Elm.ToDoApp.embed(node)
+  </script>
+</body>
 </html>

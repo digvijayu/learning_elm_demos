@@ -1,30 +1,9 @@
-module HelloWorld exposing (main)
+module ToDoApp exposing (main)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Json.Decode as Json
-
-
-main : Program Never Model Msg
-main =
-    Html.program
-        { update = update
-        , view = view
-        , init = init
-        , subscriptions = subscriptions
-        }
-
-
-init : ( Model, Cmd Msg )
-init =
-    ( { list = [], inputValue = "" }, Cmd.none )
-
-
-subscriptions : Model -> Sub Msg
-subscriptions model =
-    Sub.none
-
 
 
 -- MODEL
@@ -55,13 +34,27 @@ update msg model =
                     ( model, Cmd.none )
 
                 val ->
-                    { model | list = model.list ++ [ val ], inputValue = "" } ! []
+                    { model
+                        | list = model.list ++ [ val ]
+                        , inputValue = ""
+                    }
+                        ! []
 
         RemoveItem index ->
-            { model | list = (List.take index model.list) ++ (List.drop (index + 1) model.list) } ! []
+            ( { model
+                | list =
+                    (List.take index model.list)
+                        ++ (List.drop (index + 1) model.list)
+              }
+            , Cmd.none
+            )
 
         InputChange inputStr ->
-            { model | inputValue = inputStr } ! []
+            ( { model
+                | inputValue = inputStr
+              }
+            , Cmd.none
+            )
 
 
 
@@ -89,3 +82,23 @@ addListItem index description =
         [ label [] [ text description ]
         , button [ class "destroy", onClick (RemoveItem index) ] []
         ]
+
+
+init : ( Model, Cmd Msg )
+init =
+    ( { list = [], inputValue = "" }, Cmd.none )
+
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    Sub.none
+
+
+main : Program Never Model Msg
+main =
+    Html.program
+        { update = update
+        , view = view
+        , init = init
+        , subscriptions = subscriptions
+        }

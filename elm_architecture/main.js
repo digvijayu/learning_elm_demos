@@ -8260,7 +8260,18 @@ var _elm_lang$html$Html_Events$Options = F2(
 		return {stopPropagation: a, preventDefault: b};
 	});
 
-var _user$project$HelloWorld$update = F2(
+var _user$project$ToDoApp$subscriptions = function (model) {
+	return _elm_lang$core$Platform_Sub$none;
+};
+var _user$project$ToDoApp$init = {
+	ctor: '_Tuple2',
+	_0: {
+		list: {ctor: '[]'},
+		inputValue: ''
+	},
+	_1: _elm_lang$core$Platform_Cmd$none
+};
+var _user$project$ToDoApp$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
 		switch (_p0.ctor) {
@@ -8288,9 +8299,9 @@ var _user$project$HelloWorld$update = F2(
 				}
 			case 'RemoveItem':
 				var _p2 = _p0._0;
-				return A2(
-					_elm_lang$core$Platform_Cmd_ops['!'],
-					_elm_lang$core$Native_Utils.update(
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
 							list: A2(
@@ -8298,38 +8309,29 @@ var _user$project$HelloWorld$update = F2(
 								A2(_elm_lang$core$List$take, _p2, model.list),
 								A2(_elm_lang$core$List$drop, _p2 + 1, model.list))
 						}),
-					{ctor: '[]'});
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			default:
-				return A2(
-					_elm_lang$core$Platform_Cmd_ops['!'],
-					_elm_lang$core$Native_Utils.update(
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{inputValue: _p0._0}),
-					{ctor: '[]'});
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 		}
 	});
-var _user$project$HelloWorld$subscriptions = function (model) {
-	return _elm_lang$core$Platform_Sub$none;
-};
-var _user$project$HelloWorld$init = {
-	ctor: '_Tuple2',
-	_0: {
-		list: {ctor: '[]'},
-		inputValue: ''
-	},
-	_1: _elm_lang$core$Platform_Cmd$none
-};
-var _user$project$HelloWorld$Model = F2(
+var _user$project$ToDoApp$Model = F2(
 	function (a, b) {
 		return {list: a, inputValue: b};
 	});
-var _user$project$HelloWorld$InputChange = function (a) {
+var _user$project$ToDoApp$InputChange = function (a) {
 	return {ctor: 'InputChange', _0: a};
 };
-var _user$project$HelloWorld$RemoveItem = function (a) {
+var _user$project$ToDoApp$RemoveItem = function (a) {
 	return {ctor: 'RemoveItem', _0: a};
 };
-var _user$project$HelloWorld$addListItem = F2(
+var _user$project$ToDoApp$addListItem = F2(
 	function (index, description) {
 		return A2(
 			_elm_lang$html$Html$li,
@@ -8354,7 +8356,7 @@ var _user$project$HelloWorld$addListItem = F2(
 							_1: {
 								ctor: '::',
 								_0: _elm_lang$html$Html_Events$onClick(
-									_user$project$HelloWorld$RemoveItem(index)),
+									_user$project$ToDoApp$RemoveItem(index)),
 								_1: {ctor: '[]'}
 							}
 						},
@@ -8363,10 +8365,10 @@ var _user$project$HelloWorld$addListItem = F2(
 				}
 			});
 	});
-var _user$project$HelloWorld$AddItem = function (a) {
+var _user$project$ToDoApp$AddItem = function (a) {
 	return {ctor: 'AddItem', _0: a};
 };
-var _user$project$HelloWorld$view = function (model) {
+var _user$project$ToDoApp$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$section,
 		{
@@ -8392,7 +8394,7 @@ var _user$project$HelloWorld$view = function (model) {
 							_0: _elm_lang$html$Html_Attributes$class('new-todo'),
 							_1: {
 								ctor: '::',
-								_0: _elm_lang$html$Html_Events$onInput(_user$project$HelloWorld$InputChange),
+								_0: _elm_lang$html$Html_Events$onInput(_user$project$ToDoApp$InputChange),
 								_1: {
 									ctor: '::',
 									_0: _elm_lang$html$Html_Attributes$value(model.inputValue),
@@ -8411,7 +8413,7 @@ var _user$project$HelloWorld$view = function (model) {
 								_1: {
 									ctor: '::',
 									_0: _elm_lang$html$Html_Events$onClick(
-										_user$project$HelloWorld$AddItem(model.inputValue)),
+										_user$project$ToDoApp$AddItem(model.inputValue)),
 									_1: {ctor: '[]'}
 								}
 							},
@@ -8432,18 +8434,18 @@ var _user$project$HelloWorld$view = function (model) {
 						_0: _elm_lang$html$Html_Attributes$class('todo-list'),
 						_1: {ctor: '[]'}
 					},
-					A2(_elm_lang$core$List$indexedMap, _user$project$HelloWorld$addListItem, model.list)),
+					A2(_elm_lang$core$List$indexedMap, _user$project$ToDoApp$addListItem, model.list)),
 				_1: {ctor: '[]'}
 			}
 		});
 };
-var _user$project$HelloWorld$main = _elm_lang$html$Html$program(
-	{update: _user$project$HelloWorld$update, view: _user$project$HelloWorld$view, init: _user$project$HelloWorld$init, subscriptions: _user$project$HelloWorld$subscriptions})();
+var _user$project$ToDoApp$main = _elm_lang$html$Html$program(
+	{update: _user$project$ToDoApp$update, view: _user$project$ToDoApp$view, init: _user$project$ToDoApp$init, subscriptions: _user$project$ToDoApp$subscriptions})();
 
 var Elm = {};
-Elm['HelloWorld'] = Elm['HelloWorld'] || {};
-if (typeof _user$project$HelloWorld$main !== 'undefined') {
-    _user$project$HelloWorld$main(Elm['HelloWorld'], 'HelloWorld', undefined);
+Elm['ToDoApp'] = Elm['ToDoApp'] || {};
+if (typeof _user$project$ToDoApp$main !== 'undefined') {
+    _user$project$ToDoApp$main(Elm['ToDoApp'], 'ToDoApp', undefined);
 }
 
 if (typeof define === "function" && define['amd'])
