@@ -1,9 +1,6 @@
 module HelloWorld exposing (main)
 
-import Html exposing (..)
-import Html.Attributes exposing (..)
-import Html.Events exposing (..)
-import Json.Decode as Json
+import Html
 import ToDoApp.State as State
 import ToDoApp.Types as Types
 import ToDoApp.Views.Layout as Layout
